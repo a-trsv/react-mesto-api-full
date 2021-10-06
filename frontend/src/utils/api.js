@@ -117,7 +117,7 @@ class Api {
 const api = new Api({
     address: 'https://api.a-trsv.nomoredomains.club',
     // groupId: 'cohort-24',
-    token: '4d34d552-bc81-44cb-b18a-2296a1ced45f'
+    // token: '4d34d552-bc81-44cb-b18a-2296a1ced45f'
 })
 
 export default api
