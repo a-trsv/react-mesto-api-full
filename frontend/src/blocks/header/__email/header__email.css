@@ -1,0 +1,23 @@
+.header__email {
+    margin-right: 24px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-decoration: none;
+    color: #FFFFFF;
+    max-width: 141px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.header__email:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.header__email:visited {
+    color: #FFFFFF;
+}

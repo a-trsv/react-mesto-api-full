@@ -1,0 +1,11 @@
+.element__place {
+  background-color: #ffffff;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  box-sizing: border-box;
+}

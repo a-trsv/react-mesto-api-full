@@ -1,0 +1,8 @@
+.form__input_type_error {
+  border-color: #FF0000;
+}
+
+.form__input_type_error:last-of-type {
+  margin-top: 0;
+  margin-bottom: 0;
+}

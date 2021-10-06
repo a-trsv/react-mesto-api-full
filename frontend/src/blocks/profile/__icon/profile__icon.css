@@ -1,0 +1,14 @@
+.profile__icon {
+    background-image: url(../../../images/avatar-edit-button.svg);
+    background-color: inherit;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 47px;
+    left: 47px;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center;
+    outline: none;
+    border:none;
+}

@@ -1,0 +1,21 @@
+.header__link {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-decoration: none;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.header__link:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.header__link:visited {
+    color: #FFFFFF;
+}

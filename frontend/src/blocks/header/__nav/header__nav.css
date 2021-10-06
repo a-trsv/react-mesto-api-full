@@ -1,0 +1,21 @@
+.header__nav{
+    padding: 4px 0 4px 0;
+    margin: 0;
+    display:flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+@media screen and (max-width: 984px) {
+    .header__nav {
+      margin-right: 30px;
+    }
+  }
+
+@media screen and (max-width: 620px) {
+    .header__nav {
+     flex-direction: column;
+     margin-bottom: 32px;
+     padding: 0;
+    }
+  }

@@ -1,0 +1,17 @@
+.element__image {
+  margin: 0;
+  max-width: 100%;
+  width: 282px;
+  height: 282px;
+  border-radius: 10px 10px 0 0;
+  background-color: #2a2c2f;
+  display: block;
+  object-fit: cover;
+  position: relative;
+}
+
+.element__image:hover { 
+  cursor: pointer; 
+  
+}
+

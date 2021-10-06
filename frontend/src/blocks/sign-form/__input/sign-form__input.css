@@ -1,0 +1,11 @@
+.sign-form__input {
+    color: #CCCCCC;
+    background-color: #000;
+    border-bottom: 2px solid rgba(204,204,204, 0.8);
+    padding: 0 0 13px 0;
+    outline: none;
+}
+
+.sign-form__input:last-of-type {
+    margin-bottom: 216px;
+}

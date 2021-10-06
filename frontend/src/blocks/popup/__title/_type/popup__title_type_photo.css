@@ -1,0 +1,17 @@
+.popup__title_type_photo {
+  margin: 10px auto 0 0;
+  width: 291px;
+  height: 12px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FFFFFF;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+@media screen and (max-width: 384px) {
+  .popup__title_type_photo {
+   width: 240px;
+  }
+}
