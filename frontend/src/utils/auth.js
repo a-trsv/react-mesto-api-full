@@ -60,7 +60,7 @@ class Auth {
     }
 }
 const auth = new Auth({
-    address: 'https://auth.nomoreparties.co',
+    address: 'https://api.a-trsv.nomoredomains.club',
 })
 
 export default auth

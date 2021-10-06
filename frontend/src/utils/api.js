@@ -1,11 +1,11 @@
 class Api {
     constructor(options) {
         this._address = options.address
-        this._groupId = options.groupId
+        // this._groupId = options.groupId
         this._token = options.token
     }
     getUserInfo() {
-        return fetch(`${this._address}/${this._groupId}/users/me`, {
+        return fetch(`${this._address}/users/me`, {
             headers: {
                 authorization: this._token,
                 'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ class Api {
     }
 
     patchUserInfo({ name: inputName, about: inputJob }) {
-        return fetch(`${this._address}/${this._groupId}/users/me`, {
+        return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
             headers: {
                 authorization: this._token,
@@ -30,7 +30,7 @@ class Api {
     }
 
     getCards() {
-        return fetch(`${this._address}/${this._groupId}/cards`, {
+        return fetch(`${this._address}/cards`, {
             headers: {
                 authorization: this._token,
                 'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ class Api {
     }
 
     postCard(apiData) {
-        return fetch(`${this._address}/${this._groupId}/cards`, {
+        return fetch(`${this._address}/cards`, {
             method: 'POST',
             headers: {
                 authorization: this._token,
@@ -55,7 +55,7 @@ class Api {
     }
 
     deleteCard(cardId) {
-        return fetch(`${this._address}/${this._groupId}/cards/${cardId}`, {
+        return fetch(`${this._address}/cards/${cardId}`, {
             method: 'DELETE',
             headers: {
                 authorization: this._token,
@@ -73,7 +73,7 @@ class Api {
     }
 
     setLike(cardId) {
-        return fetch(`${this._address}/${this._groupId}/cards/likes/${cardId}`, {
+        return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'PUT',
             headers: {
                 authorization: this._token,
@@ -83,7 +83,7 @@ class Api {
     }
 
     deleteLike(cardId) {
-        return fetch(`${this._address}/${this._groupId}/cards/likes/${cardId}`, {
+        return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: {
                 authorization: this._token,
@@ -92,7 +92,7 @@ class Api {
             .then(res => this._checkServerResponse(res))
     }
     patchUserAvatar(userData) {
-        return fetch(`${this._address}/${this._groupId}/users/me/avatar`, {
+        return fetch(`${this._address}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
                 authorization: this._token,
@@ -115,8 +115,8 @@ class Api {
 }
 
 const api = new Api({
-    address: 'https://mesto.nomoreparties.co/v1',
-    groupId: 'cohort-24',
+    address: 'https://api.a-trsv.nomoredomains.club',
+    // groupId: 'cohort-24',
     token: '4d34d552-bc81-44cb-b18a-2296a1ced45f'
 })
 
