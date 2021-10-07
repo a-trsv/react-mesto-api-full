@@ -33,8 +33,8 @@ const corpOptions = {
     'http://84.201.177.135'
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  credetials: true
-  // allowedHeaders: ['Authorization']
+  credetials: true,
+  allowedHeaders: ['Authorization', 'Content-Type']
 }
 app.use(cors(corpOptions))
 app.use(express.json());
@@ -43,7 +43,7 @@ app.use(cookieParser());
 app.use(requestLogger)
 app.post('/signin', signInValidation, login);
 app.post('/signup', signUpValidation, createUser);
-//app.use(auth);
+app.use(auth);
 app.use('/', usersRouter);
 app.use('/', cardsRouter);
 app.use(errorLogger)
