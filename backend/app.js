@@ -4,7 +4,6 @@ const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
 
 const { PORT = 3000 } = process.env;
 const { errors } = require('celebrate');
@@ -25,12 +24,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
-
-const corpOptions = {
-  origin: ['http://a-trsv.nomoredomains.monster/', 'http://localhost:3000', 'http://api.a-trsv.nomoredomains.club']
-}
 const app = express();
-app.use(cors(corpOptions))
 app.use(express.json());
 app.use(helmet());
 app.use(cookieParser());
