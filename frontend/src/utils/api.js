@@ -3,7 +3,7 @@ class Api {
         this._address = options.address
         // this._groupId = options.groupId
         // this._token = options.token
-        this._headers = option.headers
+        this._headers = options.headers
     }
     getUserInfo() {
         return fetch(`${this._address}/users/me`, {
