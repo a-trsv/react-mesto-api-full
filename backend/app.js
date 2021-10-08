@@ -30,7 +30,8 @@ const corpOptions = {
   origin: [
     'http://a-trsv.nomoredomains.monster',
     'https://a-trsv.nomoredomains.monster',
-    'http://84.201.177.135'
+    'http://84.201.177.135',
+    'http://localhost:3000'
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   credetials: true,
