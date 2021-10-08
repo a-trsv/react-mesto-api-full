@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
@@ -146,38 +146,59 @@ function App() {
             })
     }
 
-    function handleLogin(password, email) {
-        auth.authorization(password, email)
-            .then((data) => {
-                auth.checkToken(data)
-                    .then((data) => {
-                        setEmail(data.data.email)
-                    })
-                    .catch(err => console.log(err))
-                setLoggedIn(true)
-                history.push('/')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+    // function handleLogin(password, email) {
+    //     auth.authorization(password, email)
+    //         .then((data) => {
+    //             auth.checkToken(data)
+    //                 .then((data) => {
+    //                     setEmail(data.data.email)
+    //                 })
+    //                 .catch(err => console.log(err))
+    //             setLoggedIn(true)
+    //             history.push('/')
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    // }
+
+    const handleCheckToken = React.useCallback(() =>{
+        auth.checkToken()
+        .then((data) => {
+                            setLoggedIn(true)
+                            setEmail(data.data.email)
+                            history.push('/')
+                        })
+                                    .catch(err => console.log(err))
+                        }, [history])
+
+    const handleLogin = (data) => {
+        auth.authorization(data)
+        .then(() => {
+            handleCheckToken(data)
+        })
     }
 
-    React.useEffect(() => {
-        const token = localStorage.getItem('jwt')
-        if (token) {
-            auth.checkToken(token)
-                .then((data) => {
-                    setLoggedIn(true)
-                    setEmail(data.data.email)
-                    history.push('/')
-                })
-                .catch(err => console.log(err))
-        }
-    }, [history])
+    useEffect(() => {
+        handleCheckToken()
+    }, [handleCheckToken])
+
+    // React.useEffect(() => {
+    //     const token = localStorage.getItem('jwt')
+    //     if (token) {
+    //         auth.checkToken(token)
+    //             .then((data) => {
+    //                 setLoggedIn(true)
+    //                 setEmail(data.data.email)
+    //                 history.push('/')
+    //             })
+    //             .catch(err => console.log(err))
+    //     }
+    // }, [history])
 
     function handleSignOut() {
         setLoggedIn(false)
-        localStorage.removeItem('jwt')
+        // localStorage.removeItem('jwt')
         setEmail('')
         history.push('/sign-in')
     }
