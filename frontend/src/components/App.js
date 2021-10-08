@@ -172,16 +172,17 @@ function App() {
                                     .catch(err => console.log(err))
                         }, [history])
 
+
+    useEffect(() => {
+        handleCheckToken()
+    }, [handleCheckToken])
+
     const handleLogin = (data) => {
         auth.authorization(data)
         .then(() => {
             handleCheckToken(data)
         })
     }
-
-    useEffect(() => {
-        handleCheckToken()
-    }, [handleCheckToken])
 
     // React.useEffect(() => {
     //     const token = localStorage.getItem('jwt')
