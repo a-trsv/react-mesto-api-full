@@ -2,13 +2,14 @@ class Api {
     constructor(options) {
         this._address = options.address
         // this._groupId = options.groupId
-        // this._token = options.token
-        this._headers = options.headers
+        this._token = options.token
     }
     getUserInfo() {
         return fetch(`${this._address}/users/me`, {
-            headers: this._headers,
-            credentials: 'include',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            }
         })
             .then(res => this._checkServerResponse(res))
     }
@@ -16,8 +17,10 @@ class Api {
     patchUserInfo({ name: inputName, about: inputJob }) {
         return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
-            headers: this._headers,
-            credentials: 'include',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 name: inputName,
                 about: inputJob,
@@ -29,9 +32,9 @@ class Api {
     getCards() {
         return fetch(`${this._address}/cards`, {
             headers: {
+                authorization: this._token,
                 'Content-Type': 'application/json'
-            },
-            credentials: 'include',
+            }
         })
             .then(res => this._checkServerResponse(res))
     }
@@ -40,6 +43,7 @@ class Api {
         return fetch(`${this._address}/cards`, {
             method: 'POST',
             headers: {
+                authorization: this._token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -54,7 +58,7 @@ class Api {
         return fetch(`${this._address}/cards/${cardId}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                authorization: this._token,
             }
         })
             .then(res => this._checkServerResponse(res))
@@ -72,7 +76,7 @@ class Api {
         return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                authorization: this._token,
             }
         })
             .then(res => this._checkServerResponse(res))
@@ -82,7 +86,7 @@ class Api {
         return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                authorization: this._token,
             }
         })
             .then(res => this._checkServerResponse(res))
@@ -91,6 +95,7 @@ class Api {
         return fetch(`${this._address}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
+                authorization: this._token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -111,9 +116,6 @@ class Api {
 
 const api = new Api({
     address: 'http://api.a-trsv.nomoredomains.club',
-    headers: {
-        'Content-Type': 'application/json'
-    }
     // groupId: 'cohort-24',
     // token: '4d34d552-bc81-44cb-b18a-2296a1ced45f'
 })

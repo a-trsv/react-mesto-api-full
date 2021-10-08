@@ -15,6 +15,7 @@ class Auth {
         return fetch(`${this._address}/signup`, {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
@@ -31,30 +32,31 @@ class Auth {
         return fetch(`${this._address}/signin`, {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
             body: JSON.stringify({ email, password })
         })
             .then(res => this._checkServerResponse(res))
-            // .then((data) => {
-            //     if (data.token) {
-            //         localStorage.setItem('jwt', data.token)
-            //         return data.token
-            //     }
-            // })
+            .then((data) => {
+                if (data.token) {
+                    localStorage.setItem('jwt', data.token)
+                    return data.token
+                }
+            })
     }
 
     checkToken(token) {
         return fetch(`${this._address}/users/me`, {
             method: 'GET',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
             },
-            credentials: 'include',
         })
             .then(res => this._checkServerResponse(res))
-            // .then((data) => data)
+            .then((data) => data)
     }
 }
 const auth = new Auth({
