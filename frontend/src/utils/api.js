@@ -60,7 +60,7 @@ class Api {
     }
 
     setLike(cardId) {
-        return fetch(`${this._address}/cards/${cardId}likes/`, {
+        return fetch(`${this._address}/cards/${cardId}/likes`, {
             method: 'PUT',
             headers: this._headers
         })
