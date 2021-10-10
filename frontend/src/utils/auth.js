@@ -64,7 +64,7 @@ class Auth {
     }
 }
 const auth = new Auth({
-    address: 'http://api.a-trsv.nomoredomains.club',
+    address: 'https://api.a-trsv.nomoredomains.club',
 })
 
 export default auth
