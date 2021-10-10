@@ -134,9 +134,10 @@ function App() {
         setAuthMessage({ img: img, text: text })
     }
 
-    function handleRegister({email, password}) {
+function handleRegister({email, password}) {
         // console.log({email, password})
-        auth.register({email, password})
+        console.log(email, password)
+        auth.register(email, password)
             .then(() => {
                 handleInfoToolTipAuthMessage({ img: successImg, text: 'Вы успешно зарегестрировались!' })
                 handleInfoToolTipOpen()
