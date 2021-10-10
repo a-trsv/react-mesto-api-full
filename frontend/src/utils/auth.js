@@ -13,7 +13,7 @@ class Auth {
         return Promise.reject(`${res.status}`)
     }
 
-    register(email, password) {
+    register({email, password}) {
         return fetch(`${this._address}/signup`, {
             method: 'POST',
             headers: {
