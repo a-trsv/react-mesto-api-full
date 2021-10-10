@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const { NODE_ENV } = process.env;
-const { JWT_SECRET = 'secret' } = process.env;
+const { NODE_ENV, JWT_SECRET } = process.env;
+// const { JWT_SECRET = 'secret' } = process.env;
 const User = require('../models/user');
 
 // Errors
@@ -58,12 +58,12 @@ const getUserById = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
-  // console.log(req.body)
+    // console.log(req.body)
     .then((hash) => User.create({
-      email: req.body.email, 
+      email: req.body.email,
       password: hash,
-      name: req.body.name, 
-      about: req.body.about, 
+      name: req.body.name,
+      about: req.body.about,
       avatar: req.body.avatar
     }))
     .then((user) => {
@@ -100,8 +100,8 @@ const login = (req, res, next) => {
       //   httpOnly: true,
       //   sameSite: true,
       // })
-        // .send({ message: 'token передан!' });
-        return res.send({token})
+      // .send({ message: 'token передан!' });
+      return res.send({ token })
     })
     .catch(() => next(new UnauthorizedError('Ошибка Авторизации')));
 };

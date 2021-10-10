@@ -27,14 +27,14 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 const app = express();
 const allowedCorsLinks = [
-    'http://a-trsv.nomoredomains.monster',
-    'https://a-trsv.nomoredomains.monster',
-    'https://api.a-trsv.nomoredomains.club',
-    'http://api.a-trsv.nomoredomains.club',
-    'http://84.201.177.135',
-    'localhost:3000',
-    'http://localhost:3000'
-  ]
+  'http://a-trsv.nomoredomains.monster',
+  'https://a-trsv.nomoredomains.monster',
+  'https://api.a-trsv.nomoredomains.club',
+  'http://api.a-trsv.nomoredomains.club',
+  'http://84.201.177.135',
+  'localhost:3000',
+  'http://localhost:3000'
+]
 app.use(cors({
   origin: allowedCorsLinks
 }))

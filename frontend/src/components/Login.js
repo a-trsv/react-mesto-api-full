@@ -18,7 +18,7 @@ function Login({ onLogin }) {
         // Передаём значения управляемых компонентов во внешний обработчик
         const email = valueEmail
         const password = valuePassword
-        onLogin({email, password})
+        onLogin({ email, password })
 
     }
     return (

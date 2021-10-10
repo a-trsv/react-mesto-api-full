@@ -19,7 +19,7 @@ function Register({ onRegister }) {
         // Передаём значения управляемых компонентов во внешний обработчик
         const email = valueEmail
         const password = valuePassword
-        onRegister({email, password})
+        onRegister({ email, password })
     }
 
     return (

@@ -14,7 +14,7 @@ import { Route, Switch, useHistory } from 'react-router-dom'
 import Register from './Register'
 import Login from './Login'
 import InfoToolTip from './InfoTooltip'
-//Иконки для попапа
+// Иконки для попапа
 import successImg from '../images/success.jpeg'
 import notSuccessImg from '../images/not-success.jpeg'
 import auth from '../utils/auth'
@@ -39,17 +39,16 @@ function App() {
 
     React.useEffect(() => {
         // Грузим только если уже зашли в профиль
-        if(loggedIn)
-        {
+        if (loggedIn) {
             Promise.all([api.getUserInfo(), api.getCards()])
-            .then(([userData, apiData]) => {
-                setCurrentUser(userData)
-                setCards(apiData)
-                // console.log(apiData)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+                .then(([userData, apiData]) => {
+                    setCurrentUser(userData)
+                    setCards(apiData)
+                    // console.log(apiData)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
     }, [loggedIn])
 
@@ -134,9 +133,8 @@ function App() {
         setAuthMessage({ img: img, text: text })
     }
 
-function handleRegister({email, password}) {
+    function handleRegister({ email, password }) {
         // console.log({email, password})
-        console.log(email, password)
         auth.register(email, password)
             .then(() => {
                 handleInfoToolTipAuthMessage({ img: successImg, text: 'Вы успешно зарегестрировались!' })
@@ -152,8 +150,8 @@ function handleRegister({email, password}) {
             })
     }
 
-    function handleLogin({email, password}) {
-        auth.authorization({email, password})
+    function handleLogin({ email, password }) {
+        auth.authorization({ email, password })
             .then((data) => {
                 auth.checkToken(data)
                     .then((res) => {

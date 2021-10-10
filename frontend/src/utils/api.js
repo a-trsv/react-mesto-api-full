@@ -1,5 +1,5 @@
 class Api {
-    constructor({address, headers}) {
+    constructor({ address, headers }) {
         this._address = address
         // this._groupId = options.groupId
         // this._token = options.token

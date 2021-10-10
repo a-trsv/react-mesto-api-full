@@ -27,10 +27,10 @@ class Auth {
                 }
             )
         })
-        .then(res => this._checkServerResponse(res))
+            .then(res => this._checkServerResponse(res))
     }
 
-    authorization({email, password}) {
+    authorization({ email, password }) {
         return fetch(`${this._address}/signin`, {
             method: 'POST',
             headers: {
