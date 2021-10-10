@@ -55,9 +55,9 @@ function App() {
 
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
-        const isLiked = card.likes.some(i => i._id === currentUser._id)
+        const isLiked = card.likes.some((i) => i === currentUser._id)
         // Отправляем запрос в API и получаем обновлённые данные карточки
-        api.changeLikeCardStatus(card._id, !isLiked)
+        api.changeLikeCardStatus(card._id, isLiked)
             .then((newCard) => {
                 setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
             })
@@ -135,7 +135,8 @@ function App() {
     }
 
     function handleRegister({email, password}) {
-        auth.register(email, password)
+        // console.log({email, password})
+        auth.register({email, password})
             .then(() => {
                 handleInfoToolTipAuthMessage({ img: successImg, text: 'Вы успешно зарегестрировались!' })
                 handleInfoToolTipOpen()
@@ -155,7 +156,8 @@ function App() {
             .then((data) => {
                 auth.checkToken(data)
                     .then((res) => {
-                        setEmail(res.data.email)
+                        // console.log(res)
+                        setEmail(res.email)
                     })
                     .catch(err => console.log(err))
                 setLoggedIn(true)
@@ -172,8 +174,8 @@ function App() {
             auth.checkToken(jwt)
                 .then((data) => {
                     setLoggedIn(true)
-                    console.log(data)
-                    setEmail(data.data.email)
+                    // console.log(data)
+                    setEmail(data.email)
                     history.push('/')
                 })
                 .catch(err => console.log(err))

@@ -52,7 +52,7 @@ class Api {
     }
 
     changeLikeCardStatus(cardId, isLiked) {
-        if (!isLiked) {
+        if (isLiked) {
             return this.deleteLike(cardId);
         } else {
             return this.setLike(cardId);
