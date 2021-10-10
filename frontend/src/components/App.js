@@ -38,7 +38,10 @@ function App() {
     const history = useHistory()
 
     React.useEffect(() => {
-        Promise.all([api.getUserInfo(), api.getCards()])
+        // Грузим только если уже зашли в профиль
+        if(loggedIn)
+        {
+            Promise.all([api.getUserInfo(), api.getCards()])
             .then(([userData, apiData]) => {
                 setCurrentUser(userData)
                 setCards(apiData)
@@ -47,7 +50,8 @@ function App() {
             .catch((err) => {
                 console.log(err)
             })
-    }, [])
+        }
+    }, [loggedIn])
 
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
@@ -130,8 +134,8 @@ function App() {
         setAuthMessage({ img: img, text: text })
     }
 
-    function handleRegister(password, email) {
-        auth.register(password, email)
+    function handleRegister({email, password}) {
+        auth.register(email, password)
             .then(() => {
                 handleInfoToolTipAuthMessage({ img: successImg, text: 'Вы успешно зарегестрировались!' })
                 handleInfoToolTipOpen()
@@ -146,12 +150,12 @@ function App() {
             })
     }
 
-    function handleLogin(password, email) {
-        auth.authorization(password, email)
+    function handleLogin({email, password}) {
+        auth.authorization({email, password})
             .then((data) => {
                 auth.checkToken(data)
-                    .then((data) => {
-                        setEmail(data.data.email)
+                    .then((res) => {
+                        setEmail(res.data.email)
                     })
                     .catch(err => console.log(err))
                 setLoggedIn(true)
@@ -163,9 +167,9 @@ function App() {
     }
 
     React.useEffect(() => {
-        const token = localStorage.getItem('jwt')
-        if (token) {
-            auth.checkToken(token)
+        const jwt = localStorage.getItem('jwt')
+        if (jwt) {
+            auth.checkToken(jwt)
                 .then((data) => {
                     setLoggedIn(true)
                     setEmail(data.data.email)

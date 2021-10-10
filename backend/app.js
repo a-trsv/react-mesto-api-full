@@ -26,18 +26,25 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 const app = express();
-const corpOptions = {
-  origin: [
+const allowedCorsLinks = [
     'http://a-trsv.nomoredomains.monster',
     'https://a-trsv.nomoredomains.monster',
     'http://84.201.177.135',
     'http://localhost:3000'
-  ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  credetials: true,
-  allowedHeaders: ['Authorization', 'Content-Type']
-}
-app.use(cors(corpOptions))
+  ]
+app.use(cors({
+  origin: allowedCorsLinks
+}))
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, HEAD, PUTP, PATCH, POST, DELETE, OPTIONS')
+  if (req.method === 'OPTIONS') {
+    res.status(200).send
+    return
+  }
+  next()
+})
 app.use(express.json());
 app.use(helmet());
 app.use(cookieParser());

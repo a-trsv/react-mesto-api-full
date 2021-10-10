@@ -1,15 +1,13 @@
 class Api {
-    constructor(options) {
-        this._address = options.address
+    constructor({address, headers}) {
+        this._address = address
         // this._groupId = options.groupId
-        this._token = options.token
+        // this._token = options.token
+        this._headers = headers
     }
     getUserInfo() {
         return fetch(`${this._address}/users/me`, {
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            }
+            headers: this._headers
         })
             .then(res => this._checkServerResponse(res))
     }
@@ -17,10 +15,7 @@ class Api {
     patchUserInfo({ name: inputName, about: inputJob }) {
         return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: inputName,
                 about: inputJob,
@@ -31,10 +26,7 @@ class Api {
 
     getCards() {
         return fetch(`${this._address}/cards`, {
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            }
+            headers: this._headers
         })
             .then(res => this._checkServerResponse(res))
     }
@@ -42,10 +34,7 @@ class Api {
     postCard(apiData) {
         return fetch(`${this._address}/cards`, {
             method: 'POST',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: apiData.name,
                 link: apiData.link
@@ -57,9 +46,7 @@ class Api {
     deleteCard(cardId) {
         return fetch(`${this._address}/cards/${cardId}`, {
             method: 'DELETE',
-            headers: {
-                authorization: this._token,
-            }
+            headers: this._headers
         })
             .then(res => this._checkServerResponse(res))
     }
@@ -75,9 +62,7 @@ class Api {
     setLike(cardId) {
         return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'PUT',
-            headers: {
-                authorization: this._token,
-            }
+            headers: this._headers
         })
             .then(res => this._checkServerResponse(res))
     }
@@ -85,19 +70,14 @@ class Api {
     deleteLike(cardId) {
         return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'DELETE',
-            headers: {
-                authorization: this._token,
-            }
+            headers: this._headers
         })
             .then(res => this._checkServerResponse(res))
     }
     patchUserAvatar(userData) {
         return fetch(`${this._address}/users/me/avatar`, {
             method: 'PATCH',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 avatar: userData.avatar
             })
@@ -112,12 +92,24 @@ class Api {
         // Если происходит ошибка, отклоняем промис
         return Promise.reject(`${res.status}`)
     }
+
+    updateToken() {
+        this._headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+    }
 }
 
 const api = new Api({
     address: 'http://api.a-trsv.nomoredomains.club',
     // groupId: 'cohort-24',
     // token: '4d34d552-bc81-44cb-b18a-2296a1ced45f'
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json'
+
+    }
 })
 
 export default api

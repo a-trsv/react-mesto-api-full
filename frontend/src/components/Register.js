@@ -17,8 +17,9 @@ function Register({ onRegister }) {
     function handleSubmit(evt) {
         evt.preventDefault()
         // Передаём значения управляемых компонентов во внешний обработчик
-        onRegister(password, email)
-
+        const email = email
+        const password = password
+        onRegister({email, password})
     }
 
     return (

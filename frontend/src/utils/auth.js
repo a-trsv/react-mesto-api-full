@@ -1,3 +1,5 @@
+import api from './api'
+
 class Auth {
     constructor(options) {
         this._address = options.address
@@ -11,7 +13,7 @@ class Auth {
         return Promise.reject(`${res.status}`)
     }
 
-    register(password, email) {
+    register(email, password) {
         return fetch(`${this._address}/signup`, {
             method: 'POST',
             headers: {
@@ -20,15 +22,14 @@ class Auth {
             },
             body: JSON.stringify(
                 {
-                    password: password,
-                    email: email
+                    email, password
                 }
             )
         })
         .then(res => this._checkServerResponse(res))
     }
 
-    authorization(password, email) {
+    authorization({email, password}) {
         return fetch(`${this._address}/signin`, {
             method: 'POST',
             headers: {
@@ -41,12 +42,14 @@ class Auth {
             .then((data) => {
                 if (data.token) {
                     localStorage.setItem('jwt', data.token)
+                    api.updateToken()
                     return data.token
                 }
             })
     }
 
     checkToken(token) {
+        console.log(token)
         return fetch(`${this._address}/users/me`, {
             method: 'GET',
             headers: {
