@@ -50,11 +50,12 @@ app.use(express.json());
 app.use(helmet());
 app.use(cookieParser());
 app.use(requestLogger)
-app.get('/crash-test', () => {
+const crashtest = () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
-});
+}
+app.get('/crash-test', crashtest);
 app.post('/signin', signInValidation, login);
 app.post('/signup', signUpValidation, createUser);
 app.use(auth);
