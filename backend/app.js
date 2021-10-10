@@ -30,7 +30,7 @@ const allowedCorsLinks = [
     'http://a-trsv.nomoredomains.monster',
     'https://a-trsv.nomoredomains.monster',
     'http://84.201.177.135',
-    'http://localhost:3000'
+    'localhost:3000'
   ]
 app.use(cors({
   origin: allowedCorsLinks
