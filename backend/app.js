@@ -48,7 +48,7 @@ app.use(helmet());
 app.use(cookieParser());
 app.use(requestLogger);
 
-app.get('/crash-test', () => {
+app.get('/crash-test', function crashtest() {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
