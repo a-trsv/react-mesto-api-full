@@ -64,7 +64,7 @@ const createUser = (req, res, next) => {
       password: hash,
       name: req.body.name,
       about: req.body.about,
-      avatar: req.body.avatar
+      avatar: req.body.avatar,
     }))
     .then((user) => {
       res.status(200).send({
@@ -72,7 +72,7 @@ const createUser = (req, res, next) => {
         about: user.about,
         avatar: user.avatar,
         _id: user._id,
-        email: user.email
+        email: user.email,
       });
     })
     .catch((error) => {
@@ -101,7 +101,7 @@ const login = (req, res, next) => {
       //   sameSite: true,
       // })
       // .send({ message: 'token передан!' });
-      return res.send({ token })
+      return res.send({ token });
     })
     .catch(() => next(new UnauthorizedError('Ошибка Авторизации')));
 };
