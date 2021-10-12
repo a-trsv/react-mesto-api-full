@@ -36,7 +36,7 @@ const getCurrentUser = (req, res, next) => User.findById(req.user._id)
   })
   .catch((error) => {
     if (error.name === 'CastError') {
-      throw new RequestError('Введенные данные некорректны! a pochemy xz');
+      next(new RequestError('Введенные данные некорректны!'));
     } else {
       next(error);
     }

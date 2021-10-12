@@ -12,8 +12,10 @@
     "type": "git",
     "url": "git+https://github.com/a-trsv/express-mesto.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Aleksi Tarasov & Practicum.Yanxdex.ru",
+    "url": "https://github.com/a-trsv"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/a-trsv/express-mesto/issues"

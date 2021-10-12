@@ -63,8 +63,8 @@ app.post('/signup', signUpValidation, createUser);
 app.use(auth);
 app.use('/', usersRouter);
 app.use('/', cardsRouter);
-app.use(errorLogger)
 app.use('*', () => { throw new NotFoundError('Запрашиваемый адрес не найден'); });
+app.use(errorLogger)
 app.use(errors());
 app.use((error, req, res, next) => {
   const { statusCode = 500, message } = error;
@@ -73,7 +73,6 @@ app.use((error, req, res, next) => {
   });
   next();
 });
-app.use(express.static(path.join(__dirname, 'public')));
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
