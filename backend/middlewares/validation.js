@@ -1,6 +1,14 @@
 const { celebrate, Joi } = require('celebrate');
 const validator = require('validator');
 
+const isUrlValid = (url) => {
+  const result = validator.isURL(url);
+  if (result) {
+    return url;
+  }
+  throw new Error('Вы ввели некорректную ссылку!');
+};
+
 const signInValidation = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -36,14 +44,6 @@ const userUpdateValidation = celebrate({
     about: Joi.string().min(2).max(30).required(),
   }),
 });
-
-const isUrlValid = (url) => {
-  const result = validator.isURL(url);
-  if (result) {
-    return url;
-  }
-  throw new Error('Вы ввели некорректную ссылку!');
-};
 
 const userAvatarUpdateValidation = celebrate({
   body: Joi.object().keys({
